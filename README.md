@@ -20,6 +20,21 @@ This repository contains Kubernetes manifests for deploying a scalable, fault-to
 * **Networking:** Services (NodePort, ClusterIP)
 * **Config:** ConfigMaps & Secrets
 
+k8s-voting-app/
+├── k8s/                        # (Опционально) Ваши старые статические YAML
+│   ├── redis-deployment.yaml
+│   └── ...
+├── voting-chart/               # Ваш основной Helm Chart
+│   ├── Chart.yaml              # Метаданные чарта
+│   ├── values.yaml             # Конфигурация (реплики, пароли, образы)
+│   └── templates/              # Шаблоны манифестов
+│       ├── _helpers.tpl        # (Оставьте, он полезен для имен)
+│       ├── redis-deployment.yaml
+│       ├── services.yaml       # Один файл для всех Service или по отдельности
+│       └── ingress.yaml        # Настройка доступа через домен
+├── .gitignore                  # Чтобы не пушить лишнее (например, .helmignore)
+└── README.md                   # Лицо вашего проекта
+
 ## 📦 Deployment Instructions
 
 1. **Start Minikube:**

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: voting-ingress
+  namespace: voting-app
+  annotations:
+    # Эта аннотация говорит Minikube использовать стандартный Nginx
+    kubernetes.io/ingress.class: nginx 
+spec:
+  # Или можно использовать современный способ:
+  ingressClassName: nginx
+  rules:
+  - host: my-vote.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            #name: {{ .Release.Name }}-redis-service
+            name: my-voting-release-frontend-service
+            port:
+              number: 80 # Или 6379, если это веб-интерфейс

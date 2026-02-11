@@ -15,6 +15,9 @@ This repository contains Kubernetes manifests for deploying a scalable, fault-to
 ## 🛠 Tech Stack
 
 * **Platform:** Kubernetes (Minikube)
+* **Helm v3** (Package Management)
+* **NGINX Ingress Controller** (Routing)
+* **Redis** (Stateful Component)
 * **Workloads:** Deployments, StatefulSets
 * **Storage:** PersistentVolumes (PV) & Claims (PVC)
 * **Networking:** Services (NodePort, ClusterIP)
@@ -37,9 +40,10 @@ k8s-voting-app/
 
 ## 📦 Deployment Instructions
 
-1. **Start Minikube:**
+1. **Start Minikube and Ingress:**
    ```bash
    minikube start --driver=hyperv --cpus=4 --memory=6144
+   minikube addons enable ingress
 Create Namespace:
 
 Bash
@@ -68,6 +72,17 @@ minikube service web-service -n voting-app
 [ ] Add Prometheus/Grafana monitoring stack.
 
 [ ] Create a Helm Chart for automated releases.
+helm install my-voting-release ./voting-chart -n voting-app --create-namespace
+
+Configure access (Windows):
+
+Add to C:\Windows\System32\drivers\etc\hosts: $(minikube ip) my-vote.local
+"172.23.245.184 my-vote.local" | Out-File -FilePath "C:\Windows\System32\drivers\etc\hosts" -Encoding ascii -Append
+
+
+Запустите туннель в отдельном окне: minikube tunnel
+
+Проверьте доступ: Приложение будет доступно по адресу: http://my-vote.local (Примечание: Ошибка 502/404 при обращении к Redis через HTTP является нормой и подтверждает работу Ingress-слоя).
 
 Created as a demonstration of Cloud-Native Infrastructure skills.
 

@@ -19,7 +19,7 @@ This repository contains Kubernetes manifests for deploying a scalable, fault-to
 * **Storage:** PersistentVolumes (PV) & Claims (PVC)
 * **Networking:** Services (NodePort, ClusterIP)
 * **Config:** ConfigMaps & Secrets
-
+```bash
 k8s-voting-app/
 ├── k8s/                        # (Опционально) Ваши старые статические YAML
 │   ├── redis-deployment.yaml

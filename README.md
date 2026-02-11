@@ -57,3 +57,5 @@ minikube service web-service -n voting-app
 Created as a demonstration of Cloud-Native Infrastructure skills.
 
 "Access the application via minikube service web-service -n voting-app or through the configured NodePort (30080)."
+
+"Project architecture includes a Helm Chart with Ingress routing. Successfully deployed on Minikube with automated service discovery."

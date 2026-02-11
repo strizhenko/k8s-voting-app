@@ -38,7 +38,7 @@ Deploy Application Stack:
 Bash
 kubectl apply -f k8s/
 Access the App:
-
+text
 Bash
 minikube service web-service -n voting-app
 ┌────────────┬─────────────┬─────────────┬─────────────────────────────┐
